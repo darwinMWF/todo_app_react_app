@@ -17,23 +17,37 @@ function App() {
   //
   const [add,setadd] = useState('');
   const [state, setstate] = useState(arry);
+  const [taskmajorArray,settaskchangeArray] = useState(arry)
   const [newid,setnewid] = useState(4);
-  const [isCompleted,setcompleted] = useState(false);
+  // const [isCompleted,setcompleted] = useState(false);
   
   const handleInputChange = (e)=>{
     setadd(e.target.value) 
     setnewid(newid+1)
-    // set input 's value to the add variable
   }
 
   const addClick= ()=>{
-    setstate([...state,{id:newid,task:add,ischecked:false}]);
-    setadd('');// for empty input after adding
+    setstate([...state,{id:newid,task:add,ischecked:false}])
+    settaskchangeArray([...taskmajorArray,{id:newid,task:add,ischecked:false}])
+    setadd('');
   }
 
   const handlecomplete = ()=>{
-    setcompleted(!isCompleted);
-    console.log(isCompleted)
+   
+    const Completelist = taskmajorArray.filter(x => x.ischecked);
+    setstate(Completelist)
+  
+  }
+
+  const handleNotComplete = ()=>{
+ 
+      const NotCompletelist = taskmajorArray.filter(x => x.ischecked === false);
+      setstate(NotCompletelist)
+  }
+
+  const handleAlltask = ()=>{
+      
+      setstate(taskmajorArray)
   }
 
 
@@ -45,11 +59,11 @@ function App() {
     <input type='text' value={add} onChange={handleInputChange}/>
     <button onClick={addClick}>ADD</button>
     <div>
-      <button>ALL</button>
+      <button onClick={handleAlltask}>ALL</button>
       <button onClick={handlecomplete}>Completed</button>
-      <button>Not Completed</button>
+      <button onClick={handleNotComplete}>Not Completed</button>
     </div>
-    <List arry={state} setarry={setstate} checkcompleted = {isCompleted} />
+    <List arry={state} setarry = {setstate} majorarry = {taskmajorArray} setmajorarry = {settaskchangeArray}/>
     
     </>
   )

@@ -2,23 +2,28 @@ import { useState } from "react";
 import { useEffect } from "react";
 import "./list.css";
 
-const List = ({ arry, setarry, checkcompleted }) => {
-//     const[newdata,setdata] = useState([])
-//    useEffect(()=>{
-//         setdata(list)
-//    })
+const List = ({ arry, majorarry, setmajorarry }) => {
+  //     const[newdata,setdata] = useState([])
+  //    useEffect(()=>{
+  //         setdata(list)
+  //    })
+
+  const deletehandler = (id) => {
+    const afterdeletelist = arry.filter((x) => x.id !== id);
+    setarry(afterdeletelist);
+  };
 
   const handleCheckbox = (id) => {
-    const newArry = arry.map((data) => {
+    const newArry = majorarry.map((data) => {
       if (data.id == id) {
         return { ...data, ischecked: !data.ischecked ? true : false };
       } else {
         return data;
       }
     });
-
-    setarry(newArry);
-    console.log(newArry);
+    
+    setmajorarry(newArry);
+    
   };
 
   const list = arry.map((x) => (
@@ -28,34 +33,24 @@ const List = ({ arry, setarry, checkcompleted }) => {
         onChange={() => {
           handleCheckbox(x.id);
         }}
+        defaultChecked={x.ischecked ? true : false}
       />
       {x.task}
       &nbsp;
-      <button>delete</button>
+      <button
+        onClick={() => {
+          deletehandler(x.id);
+        }}
+      >
+        delete
+      </button>
       <button>edit</button>
     </li>
   ));
 
-  const completedList = arry.filter(x=>{
-    if(x.ischecked){
-        return <li key={x.id}>
-        <input
-          type="checkbox"
-          onChange={() => {
-            handleCheckbox(x.id);
-          }}
-        />
-        {x.task}
-        &nbsp;
-        <button>delete</button>
-        <button>edit</button>
-      </li>
-    }
-  }) 
   return (
     <>
-      <ul>{newdata}</ul>
-     
+      <ul>{list}</ul>
     </>
   );
 };
