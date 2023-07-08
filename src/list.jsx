@@ -2,14 +2,28 @@ import { useState } from "react";
 import { useEffect } from "react";
 import "./list.css";
 
-const List = ({ arry, majorarry, setmajorarry }) => {
+const List = ({ arry, setarry, majorarry, setmajorarry }) => {
   //     const[newdata,setdata] = useState([])
   //    useEffect(()=>{
   //         setdata(list)
   //    })
 
+  const [editinputvalue,seteditinputvalue] = useState("");
+
   const deletehandler = (id) => {
     const afterdeletelist = arry.filter((x) => x.id !== id);
+    const changedeletd = majorarry.map((x)=>{
+      console.log(x.isdelete)
+      if(x.id == id){
+        const data =  {...x,isdelete:!x.isdelete}
+       
+        return data
+      }
+      return x;
+    })
+
+    console.log(changedeletd)
+    setmajorarry(changedeletd);
     setarry(afterdeletelist);
   };
 
@@ -26,16 +40,36 @@ const List = ({ arry, majorarry, setmajorarry }) => {
     
   };
 
+
+  const handleEditbtn = (id)=>{
+    const list = arry.map((x)=>{
+      if(x.id == id){
+        if(x.isedited){
+          return {...x,task:editinputvalue,isedited:!x.isedited}
+        }
+        return {...x,isedited:!x.isedited};
+      }else{
+        return x;
+      }
+    })
+
+    setarry(list);
+    setmajorarry(list)
+
+
+  }
+
+  const edittask  = (e)=>{
+    seteditinputvalue(e.target.value);
+  }
+
   const list = arry.map((x) => (
     <li key={x.id}>
-      <input
-        type="checkbox"
-        onChange={() => {
-          handleCheckbox(x.id);
-        }}
-        defaultChecked={x.ischecked ? true : false}
-      />
-      {x.task}
+      {x.isedited && <input type="text" onChange={edittask} defaultValue={x.task}/>}
+      {!x.isedited && <input type="checkbox" onChange={()=>{
+        handleCheckbox(x.id)
+      }} defaultChecked={x.ischecked?true:false}/>}
+      {!x.isedited && x.task}
       &nbsp;
       <button
         onClick={() => {
@@ -44,7 +78,10 @@ const List = ({ arry, majorarry, setmajorarry }) => {
       >
         delete
       </button>
-      <button>edit</button>
+      <button onClick={()=>{
+        handleEditbtn(x.id)
+      }}>edit</button>
+      
     </li>
   ));
 
