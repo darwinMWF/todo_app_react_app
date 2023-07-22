@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>promise</title>
+  </head>
+  <body>
+    <script>
+      // function loadScript(src, callback) {
+      //   let script = document.createElement("script");
+      //   script.src = src;
+
+      //   script.onload = () => callback(null, script);
+      //   script.onerror = () => callback(new Error("some error occur"));
+      //   document.head.append(script);
+      // }
+
+      // // function givingAnswer(){
+      // //   // alert("task is completed")
+      // //   loadScript("./myscript2.js",()=>{
+      // //     loadScript('./myscript3.js',()=>{
+      // //       alert("done");
+      // //     })
+      // //   })
+      // // }
+
+      // function givingAnswer(err, script) {
+      // //   loadScript("./myscript2.js", (err, script) => {
+      // //     if (err) {
+      // //       alert(err);
+      // //     } else {
+      // //       loadScript("./myscript3.js", (err, script) => {
+      // //         if (err) {
+      // //           alert(err);
+      // //         } else {
+      // //           loadScript("./myscript4.js", (err, script) => {
+      // //             if (err) {
+      // //               alert(err);
+      // //             }else{
+      // //               console.log(script)
+      // //             }
+      // //           });
+      // //         }
+      // //       });
+      // //     }
+      // //   });
+      // // }
+
+      //   loadScript('./myscript2.js',f0);
+
+      // }
+
+
+      // function f0(err,script){
+      //   if (err) {
+      //       alert(err);
+      //     } else {
+      //       loadScript('./myscript3.js',f1);}
+      // }
+
+      // function f1(err,script){
+      //   if (err) {
+      //       alert(err);
+      //     } else {
+      //       loadScript('./myscript4.js',f2);}
+      // }
+
+      // function f2(err,script){
+      //   if (err) {
+      //       alert(err);
+      //     } else {
+      //       console.log(script)}
+      // }
+
+      // loadScript("./myscript.js", givingAnswer);
+
+      // console.log("heloo world");
+
+
+      let promise = new Promise((resolve,reject)=>{
+        //executer
+        // console.log("hello wolrd")
+
+        // setInterval(()=>{reject(new Error("some error"))},5000)
+        // setInterval(()=>{resolve("done")},5000)
+      })
+      // console.log(promise)
+      promise.then((result)=>{console.log(result)}).catch((err)=>{console.log(err)})
+
+      console.log("hello darwin")
+
+      
+    </script>
+  </body>
+</html>
