@@ -15,11 +15,12 @@ import { BrowserRouter } from 'react-router-dom';
 // import CleanUp from './useEffect/cleanUp'
 
 import App from './react-router-dom/app';
+import Postdata from './react-promise/promise-post';
+// import { PromiseData } from './react-promise/promise';
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-   <BrowserRouter>
-    <App/>
-   </BrowserRouter>
+    <Postdata/>
   </React.StrictMode>,
 )

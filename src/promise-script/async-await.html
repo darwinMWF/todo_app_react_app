@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<script>
+"use strict";
+
+// async function f() {
+//   return 1;
+// }
+
+// f().then(console.log)
+
+async function f() {
+
+let promise = new Promise((resolve, reject) => {
+  setTimeout(() => resolve("done!"), 1000)
+});
+
+// promise.then(console.log)
+let result = await promise; // wait until the promise resolves (*)
+
+console.log(result)// "done!"
+}
+
+console.log(f())
+ // 1
+</script>
