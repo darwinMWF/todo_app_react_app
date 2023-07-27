@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redux</title>
+</head>
+<body>
+
+    <script src="https://unpkg.com/redux@4.2.1/dist/redux.js"></script>
+    <script>
+        console.log(Redux)
+
+        // action
+        const newBooking = (name, amount) => {
+            return {
+                    type:"NEW_BOOKING",
+                    payload:{
+                        name,
+                        amount
+                    }
+                }
+        }
+
+        const cancelBooking = (name,amount) => {
+            return {
+                type:"CANCEL",
+                    payload:{
+                        name,
+                        amount
+                    }
+            }
+        }
+
+
+        // reducer
+        const Reservationdata = (oldreservation = [],action)=>{
+                if(action.type === "NEW_BOOKING"){
+                    return [...oldreservation,action.payload]
+                }
+                else if(action.type === "CANCEL"){
+                    return oldreservation.filter(x=>x.name != action.payload.name)
+                }
+
+                return oldreservation;
+
+        }
+
+        const cancelBookingData = (oldreservationCanceldata = [],action)=>{
+                if(action.type === "CANCEL"){
+                    return [...oldreservationCanceldata,action.payload]
+                }
+
+                return oldreservationCanceldata;
+
+        }
+
+
+
+        const Accounting = (totalammount = 100,action)=>{
+            if(action.type === "NEW_BOOKING"){
+                return totalammount + action.payload. amount;
+            }else if(action.type === "CANCEL"){
+                return totalammount - action.payload.amount;
+            }
+
+            return totalammount;
+        }
+
+
+
+        // store
+        const {combineReducers,createStore} = Redux;
+        // console.log(createStore)
+        const Reducers = combineReducers({
+            Reservationdata:Reservationdata,
+            Accounting:Accounting,
+            canceldata:cancelBookingData
+        })
+
+        const store = createStore(Reducers)
+
+        store.dispatch(newBooking("mukesh",120));
+        store.dispatch(newBooking("sukesh",1000));
+        store.dispatch(newBooking("jukesh",1200));
+        store.dispatch(newBooking("kukesh",1900));
+        console.log(store.getState());
+        store.dispatch(cancelBooking("mukesh",120));
+        console.log(store.getState());
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

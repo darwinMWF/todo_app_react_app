@@ -7,12 +7,12 @@ const Postdata = ()=>{
 
     const handlesubmmit = async()=>{
         try{
-            // let response = await axios.get("https://jsonplaceholder.typicode.com/posts");
-            // console.log(response.data)
+            let result = await axios.get("ttps://jsonplaceholder.typicode.com/posts");
+            console.log(result.data)
             let response = await axios.post("http://localhost:3000/data",{data:"mukesh",id:1,arry:[45,78,56]})
-            console.log(response)
+            console.log(response.data)
         }catch(err){
-            console.log(err)
+            console.log(err.message)
         }
        
     }
@@ -30,11 +30,15 @@ const Postdata = ()=>{
         //       'Content-type': 'application/json; charset=UTF-8'
         //     }}).then(res=>res.json()).then(console.log).catch(console.log)
         // axios.get("http://localhost:3000/update)
+
+        handlesubmmit()
+
+
         
         }
     ,[])
     return <>
-    <button onClick={handlesubmmit}>submit</button>
+    <button >submit</button>
     </>
 
 

@@ -14,12 +14,18 @@ let promise = new Promise((resolve, reject) => {
   setTimeout(() => resolve("done!"), 1000)
 });
 
-// promise.then(console.log)
-let result = await promise; // wait until the promise resolves (*)
+let result = await promise
+console.log(result)
+// // promise.then(console.log)
+// let result = await promise; // wait until the promise resolves (*)
 
-console.log(result)// "done!"
+// console.log(result)// "done!"
+// return "mukesh";
 }
 
-console.log(f())
+f()
+
+// f().then(console.log)
+// console.log(f())
  // 1
 </script>
