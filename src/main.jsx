@@ -23,7 +23,9 @@ import store from './redux/redux_implementation/store';
 // import { Signup } from './formik/form';
 
 //redux
-import { App } from './redux/redux_implementation/app';
+// import { App } from './redux/redux_implementation/app';
+
+// this is not implement in last lecture
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
